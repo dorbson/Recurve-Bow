@@ -1,0 +1,11 @@
+<configs>
+		
+	<append xpath="/lootgroups/lootgroup[@name='schematicsWeaponsRare']" >
+		<item name="RecurveBowSchematic"/>
+	</append>
+	
+	<append xpath="/lootgroups/lootgroup[@name='groupWeaponsT3_Archery01']" >
+		<item name="Recurve Bow"/>
+	</append>
+	
+</configs>

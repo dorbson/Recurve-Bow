@@ -1,0 +1,14 @@
+<configs>
+	
+<append xpath="/recipes">
+
+<recipe name="Recurve Bow" count="1" craft_area="workbench" tags="learnable,perkArchery">
+	<ingredient name="gunBowWoodenParts" count="5"/>
+	<ingredient name="resourceScrapPolymers" count="25"/>
+	<ingredient name="resourceLeather" count="5"/>
+	<ingredient name="resourceDuctTape" count="5"/>
+	<ingredient name="resourceSpring" count="10"/>
+</recipe>
+
+</append>
+</configs>

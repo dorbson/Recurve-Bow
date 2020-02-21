@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xml>
+		<ModInfo>
+			<Name value="Recurve Bow"/>
+			<Description value="Adding a Recurve Bow to the game"/>
+			<Author value="Dorbson"/>
+			<Version value="1.0"/>
+			<Website value=""/>
+		</ModInfo>
+	</xml>

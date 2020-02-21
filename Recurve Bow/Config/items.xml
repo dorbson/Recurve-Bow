@@ -1,0 +1,115 @@
+<configs>
+
+<!-- Dorbson's Recurve Bow -->
+
+	<append xpath="/items">
+
+
+<item name="Recurve Bow"> 
+	<property name="Tags" value="weapon,ranged,bowDrawPenalty,archery,bow,attAgility,perkArchery,canHaveCosmetic"/>
+	<property name="CustomIcon" value="recurvebow" />
+	<property name="DisplayType" value="rangedBow"/>
+	<property name="HoldType" value="27"/>
+	<property name="Meshfile" value="#@modfolder:Resources/RecurveBow.unity3d?RecurveBowA.Prefab"/>
+	<property name="Material" value="Mwood"/>
+	<property name="RepairTools" value="resourceWood"/>
+	<property name="FuelValue" value="200"/>
+	<property name="EconomicValue" value="250"/>
+	<property name="EconomicBundleSize" value="1"/>
+	<property name="SellableToTrader" value="false"/>
+	<property name="DegradationBreaksAfter" value="false"/>
+	<property name="SoundJammed" value="ItemNeedsRepair"/>
+	<property name="SoundDestroy" value="wooddestroy1"/>
+	<property name="CrosshairOnAim" value="true"/> <!-- aimTest -->
+	<property name="CrosshairUpAfterShot" value="false"/>
+	<property name="RepairExpMultiplier" value="5.5"/>
+	<property name="PickupJournalEntry" value="alternateAmmoTip"/>
+	<property name="ShowQuality" value="true"/>
+	<property name="Group" value="Ammo/Weapons,Basics"/>
+	<property name="DescriptionKey" value="RecurveBowDesc"/>
+	<property class="Action0">
+		<property name="Class" value="Catapult"/>
+		<!-- Catapult might not be the best name for it but it can also be used for a slingshot -->
+		<property name="Hitmask_override" value="Arrow"/>
+		<property name="Delay" value="1"/> <!-- obsolete if rounds per minute exists -->
+		<property name="Magazine_items" value="ammoArrowStone,ammoArrowIron,ammoArrowSteelAP,ammoArrowFlaming,ammoArrowExploding"/>
+		<!-- <property name="Reload_time" value=".9"/> -->
+		<property name="Sound_start" value="bow3_fire"/>
+		<property name="Sound_repeat" value=""/>
+		<property name="Sound_end" value=""/>
+		<property name="Sound_empty" value="dryfire"/>
+		<property name="Sound_reload" value="bow_unquiver"/>
+		<property name="Sound_draw" value="bow3_draw"/>
+		<property name="Sound_cancel" value="bow_fire_cancel"/>
+		<property name="Particles_muzzle_fire" value="nozzleflashuzi"/>
+		<property name="Particles_muzzle_smoke" value="nozzlesmokeuzi"/>
+		<property name="Max_strain_time" value=".5"/>
+		<property name="SideOffset" value="0,0,0"/>
+		<property name="BarrelOffset" value="0,0,0"/>
+		<requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".98"/>
+	</property>
+	<property class="Action1"> <!-- UseAction -->
+		<property name="Class" value="Zoom"/>
+		<property name="Zoom_max_out" value="55"/>
+		<property name="Zoom_max_in" value="55"/>
+	</property>
+		<effect_group name="gunBowCompound">
+		<passive_effect name="ProjectileVelocity" operation="perc_add" value=".3"/>
+		<passive_effect name="DamageFalloffRange" operation="base_set" value="40"/>
+		<passive_effect name="DamageFalloffRange" operation="perc_add" value="-.3,.3"/> <!-- random effective rng -->
+		<passive_effect name="MaxRange" operation="base_set" value="100"/>
+		<passive_effect name="MagazineSize" operation="base_set" value="1"/>
+
+		<passive_effect name="EntityDamage" operation="perc_add" value=".2,.40"/> <!-- random EntityDmg -->
+		<passive_effect name="EntityDamage" operation="perc_add" value=".2,1" tier="2,6"/> <!-- tier bonus -->
+		<passive_effect name="BlockDamage" operation="perc_add" value="-.15,.15"/> <!-- random BlockDmg -->
+		<passive_effect name="BlockDamage" operation="perc_add" value=".1,.5" tier="2,6"/> <!-- tier bonus -->
+
+		<passive_effect name="DegradationMax" operation="perc_add" value="-.2,.2" tags="perkArchery"/> <!-- random DegMax -->
+		<passive_effect name="WeaponHandling" operation="perc_add" value="-.08,.08"/> <!-- random WeaponHandling -->
+
+		<passive_effect name="SpreadDegreesVertical" operation="base_set" value="2.67"/>
+		<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="2.67"/>
+		<passive_effect name="SpreadMultiplierAiming" operation="base_set" value=".15"/>
+		<passive_effect name="SpreadMultiplierCrouching" operation="base_set" value=".8"/>
+		<passive_effect name="SpreadMultiplierWalking" operation="base_set" value="1.5"/>
+		<passive_effect name="SpreadMultiplierRunning" operation="base_set" value="2.2"/>
+
+		<passive_effect name="ReloadSpeedMultiplier" operation="base_set" value=".9"/>
+		<passive_effect name="IncrementalSpreadMultiplier" operation="base_set" value="2"/>
+		<passive_effect name="WeaponHandling" operation="base_set" value=".9"/> <!-- crosshair reset speed -->
+
+		<passive_effect name="RoundsPerMinute" operation="base_set" value="75"/>
+		<passive_effect name="BurstRoundCount" operation="base_set" value="1"/>
+
+		<passive_effect name="KickDegreesVerticalMin" operation="base_set" value="2"/>
+		<passive_effect name="KickDegreesVerticalMax" operation="base_set" value="2"/>
+
+		<passive_effect name="KickDegreesHorizontalMin" operation="base_set" value="-1"/>
+		<passive_effect name="KickDegreesHorizontalMax" operation="base_set" value="1"/>
+
+		<passive_effect name="DegradationMax" operation="base_set" value="200,400" tier="1,6" tags="perkArchery"/>
+		<passive_effect name="DegradationPerUse" operation="base_set" value="1" tags="perkArchery"/>
+		<passive_effect name="ModSlots" operation="base_set" value="1,1,2,2,3,4" tier="1,2,3,4,5,6"/>
+		<passive_effect name="ModPowerBonus" operation="perc_add" value=".10" tags="EntityDamage,BlockDamage"/>
+		<passive_effect name="ModPowerBonus" operation="base_add" value="300" tags="EconomicValue"/>
+		
+			<triggered_effect trigger="onReloadStart" action="AnimatorSetBool" target="self" property="Reload" value="true"/>
+			<triggered_effect trigger="onReloadStop" action="AnimatorSetBool" target="self" property="Reload" value="false"/>
+		
+			<triggered_effect trigger="onWeaponPreFireStart" action="AnimatorSetTrigger" target="self" property="WeaponPreFire" value="true"/>
+			<triggered_effect trigger="onWeaponPreFireStart" action="AnimatorSetTrigger" target="self" property="WeaponPreFire" value="false"/>
+
+	</effect_group>
+</item>
+	
+<item name="RecurveBowSchematic">
+	<property name="Extends" value="schematicMaster"/>
+	<property name="CreativeMode" value="Player"/>
+	<property name="CustomIcon" value="recurvebow"/>
+	<property name="Unlocks" value="RecurveBow"/>
+</item>
+
+
+	</append>
+</configs>

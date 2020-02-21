@@ -1,0 +1,3 @@
+Key,Source,Context,Changes,English
+
+RecurveBowDesc,items,,,A recurve bow is a bow with limbs that curve away from the archer when unstrung. A recurve bow stores more energy and delivers energy more efficiently than the equivalent straight-limbed bow, giving a greater amount of energy and speed to the arrow.
